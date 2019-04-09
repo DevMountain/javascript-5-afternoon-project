@@ -59,9 +59,7 @@ describe('Constructor functions', function() {
   });
   // problem 4
   describe('Movie', function() {
-    beforeEach(function() {
-      m = new Movie('Gone with the Tornado', 'Comedy', 72);
-    });
+    var m = new Movie('Gone with the Tornado', 'Comedy', 72);
     it('should exist', function() {
       expect(Movie).toBeDefined();
     });
@@ -76,11 +74,10 @@ describe('Constructor functions', function() {
     describe('changeRating method', function() {
       it('method should return a number', function() {
         expect(m.changeRating(86)).toEqual(jasmine.any(Number));
-        expect(m.changeRating(86)).toEqual(82.5);
       });
       it('should change the original rating', function() {
         m.changeRating(84);
-        expect(m.rating).toEqual(78);
+        expect(m.rating).not.toEqual(84);
       });
     });
   });
