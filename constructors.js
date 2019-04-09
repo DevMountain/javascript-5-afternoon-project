@@ -13,7 +13,10 @@
   The values for the make and model will come from two parameters, make and model (in that order).
 */
 
-// Code here
+function CarFactory(make, model) {
+  this.make = make,
+  this.model = model
+}
 
 
 
@@ -32,8 +35,7 @@ function Employee(name, email, hireDate, salary) {
   Assign the result of the invocation to a variable called bob.
 */
 
-// Code here
-
+let bob = new Employee('Bob', 'bob@gmail.com', '01-02-98');
 
 
 ////////// PROBLEM 3 //////////
@@ -56,7 +58,15 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 // Code here
 
 
-////////// PROBLEM 4 ////////// 	
+function Car(make, model, year) {
+  this.make = make,
+  this.model = model,
+  this.year = year
+  this.move = 0
+  this.moveCar = () => {
+    return this.move += 10;
+  }
+};
 
 
  // Here we have a constructor function named Movie that takes in 3 parameters: name (a string), genre (a string), and rating (a number withing 1-100 that has been averaged out from previous given ratings). Write a prototype method for the Movie constructor function called changeRating. This method should take in a number as a parameter that will be a new rating. Find the average between the old rating and the new rating. Change the rating property to become this new number and return the updated rating. 	
@@ -66,13 +76,24 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
   this.name = name;	
   this.genre = genre;	
   this.rating = rating;	
-}	
+};	
 
 
  // Code here	
 
+Movie.prototype = {
+  changeRating: function(num) {
+    let average = (this.rating + num) / 2
+    return this.rating = average;
+  }
+};
 
-
+let batman = new Movie('batman', 'action', 72);
+console.log(batman);
+batman.changeRating(86);
+console.log(batman);
+batman.changeRating(86);
+console.log(batman);
 
 ////////// PROBLEM 5 //////////	
 
@@ -82,9 +103,32 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
  // Once the User constructor function is created, write a prototype method for the User function. Name this method addSavedPost. It should take in three parameters: id (a number), title (a string) and rating (a number). Use these parameters to create a new object and add it to the savedPosts array. Make sure to name the properties the same as described previously (id, title, rating).	
 
 
- // Code here	
+function User(name, age, email, savedPosts) {
+  this.name = name;
+  this.age = age;
+  this.email = email;
+  this.savedPosts = savedPosts;
+};
 
-
+User.prototype = {
+  addSavedPost: function(id, title, rating) {
+    let post = {
+      id,
+      title,
+      rating
+    };
+    this.savedPosts.push(post);
+    return this.savedPosts;
+  },
+  removeSavedPost: function(id) {
+    const index = this.savedPosts.findIndex(post => +post.id === +id)
+    return this.savedPosts.splice(index, 1);
+  },
+  changePostRating: function(id, rating) {
+    const index = this.savedPosts.findIndex(post => +post.id === +id)
+    this.savedPosts[index].rating = rating;
+  }
+};
 
 
 
@@ -93,9 +137,6 @@ mustang.moveCar(); // Increments mustang' move property by 10. Returns the new m
 
  // You will be using the constructor function you just created in problem 5. 	
 // Write a prototype method for the User constructor function named removeSavedPost that will take in one number parameter representing the post id. Use this id to find and remove the matching object in the savedPosts array. 	
-
-
- // Code here	
 
 
 
