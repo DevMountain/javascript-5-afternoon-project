@@ -23,7 +23,7 @@
     - age
   Each employee has the following methods:
     - makeWidget
-      - This returns a string equal to the employees first name + last name + the word widget
+      - This returns a string equal to the employees first name + last name + the word Widget
       - Example: "Dave Smith Widget"
 
   Call your class Employee and receive all the data in the constructor in the order listed above.
