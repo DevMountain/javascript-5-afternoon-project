@@ -30,7 +30,18 @@
 */
 
 //Code Here
+class Employee{
+  constructor(first_name, last_name, email, age){
+    this.first_name = first_name
+    this.last_name = last_name
+    this.email = email
+    this.age = age 
+  }
+  makeWidget(){
+    return `${this.first_name} ${this.last_name} Widget`
+  }
 
+}
 
 ////////// PROBLEM 2 //////////
 
@@ -48,13 +59,25 @@
 */
 
 //Code Here
-
+class Manager extends Employee{
+  constructor(first_name, last_name, email, age){
+    super(first_name, last_name, email, age)
+    this.reports = []    
+  }
+  hire(employee){
+    return this.reports.push(employee)
+  }
+  fire(i){
+    return this.reports.splice(i, 1)
+  }
+}
 
 ////////// PROBLEM 3 //////////
 
 /*
   Managers for Widget Co. get promoted when they get more employees, and get a bonus when they fire employees.
-  create a class ProgressiveManager that extends Manager.  A Progressive Manager has all of the same properties as a manager with the following additional properties:
+  create a class ProgressiveManager that extends Manager.  A Progressive Manager has all of the same properties as a manager with the
+  following additional properties:
     - title - default 'Not a manager'
     - bonus - default 0
 
@@ -72,7 +95,39 @@
 */
 
 //Code Here
+class ProgressiveManager extends Manager{
+  constructor(first_name, last_name, email, age){
+    super(first_name, last_name, email, age)
+    this.title = 'Not a manager'
+    this.bonus = 0
+  }
 
+    changeTitle(){
+      if(this.reports.length === 0){
+        return this.title = 'Not a manager'
+      }else if(this.reports.length >= 1 && this.reports.length <= 3){
+        return this.title = 'Barely Manager'
+      }else if(this.reports.length >= 4 && this.reports.length <= 10){
+        return this.title = 'Mostly Manager'
+      }else if(this.reports.length >= 11 && this.reports.length <= 50){
+        return this.title = 'Manager'
+      }else if(this.reports.length >= 51 && this.reports.length <= 100){
+        return this.title = 'Manager Plus'
+      }else if(this.reports.length >= 101){
+        return this.title = 'Bestest Manager'
+      }
+    }
+
+    hire(employee){
+      this.reports.push(employee)
+      this.changeTitle()
+    }
+    fire(i){
+      this.reports.splice(i, 1)
+      this.changeTitle()
+      this.bonus += 100
+    }
+}
 
 
 ////////// PROBLEM 4 - Black Diamond //////////
@@ -99,5 +154,29 @@
 */
 
 //Code Here
+class Machine{
+  constructor(widgets_made_count, wear_and_tear_count, needs_reboot){
+    this.widgets_made_count = widgets_made_count
+    this.wear_and_tear_count = wear_and_tear_count
+    this.needs_reboot = needs_reboot
+  }
 
+  widgets_made_count = 0
+  wear_and_tear_count = 0
+  needs_reboot = 0
+
+  makeWidgets(number){
+    this.widgets_made_count += number
+
+  }
+  fixMachine(){
+    return this.needs_reboot = true
+  }
+  reboot(){
+    return function(){
+      this.wear_and_tear_count -= 10
+      this.needs_reboot = false
+    }
+  }
+}
 
