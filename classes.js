@@ -154,29 +154,52 @@ class ProgressiveManager extends Manager{
 */
 
 //Code Here
-class Machine{
-  constructor(widgets_made_count, wear_and_tear_count, needs_reboot){
-    this.widgets_made_count = widgets_made_count
-    this.wear_and_tear_count = wear_and_tear_count
-    this.needs_reboot = needs_reboot
-  }
+// class Machine{
+//   constructor(widgets_made_count, wear_and_tear_count, needs_reboot){
+//     this.widgets_made_count = widgets_made_count
+//     this.wear_and_tear_count = wear_and_tear_count
+//     this.needs_reboot = needs_reboot
+//   }
 
-  widgets_made_count = 0
-  wear_and_tear_count = 0
-  needs_reboot = 0
+//   widgets_made_count = 0
+//   wear_and_tear_count = 0
+//   needs_reboot = false
+
+//   makeWidgets(number){
+//     this.widgets_made_count += number
+
+//   }
+//   fixMachine(){
+//     return this.needs_reboot = true
+//   }
+//   reboot(){
+//     return function(){
+//       this.wear_and_tear_count -= 10
+//       this.needs_reboot = false
+//     }
+//   }
+// }
+
+class Machine{
+  constructor(){
+    this.widgets_made_count = 0
+    this.wear_and_tear_count = 0
+    this.needs_reboot = false
+  }
 
   makeWidgets(number){
     this.widgets_made_count += number
+    this.wear_and_tear_count = this.widgets_made_count/50
+  }
 
-  }
   fixMachine(){
-    return this.needs_reboot = true
+    this.needs_reboot = true
   }
+
   reboot(){
-    return function(){
+    return () => {
       this.wear_and_tear_count -= 10
       this.needs_reboot = false
     }
   }
 }
-
