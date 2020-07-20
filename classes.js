@@ -26,7 +26,7 @@
       - This returns a string equal to the employees first name + last name + the word Widget
       - Example: "Dave Smith Widget"
 
-  Call your class Employee and receive all the data in the constructor in the order listed above.
+  Name your class Employee and receive all the data in the constructor in the order listed above.
 */
 
 //Code Here
@@ -44,7 +44,7 @@
     - fire (index)
       - Fire removes employees from their list of reports at the given index
 
-  Call your new class Manager
+  Name your new class Manager
 */
 
 //Code Here
@@ -68,7 +68,7 @@
 
   Everytime they fire an employee they get $100 added to their bonus.
 
-  Call your new class ProgressiveManager
+  Name your new class ProgressiveManager
 */
 
 //Code Here
